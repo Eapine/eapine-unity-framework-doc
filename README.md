@@ -1,8 +1,6 @@
 # Eapine Unity Framework 框架文档
 
----
-
-# 简介
+## 简介
 
 Eapine Unity Framework 是一个基于 Unity 引擎的游戏框架，主要对游戏开发过程中常用模块进行了封装，很大程度地规范开发过程、加快开发速度并保证产品质量。
 基于 [https://github.com/EllanJiang/GameFramework](https://github.com/EllanJiang/GameFramework) 进行大量修改和扩展。阅读或扩展代码前，可查看此框架的[代码规范](https://eapine.github.io/eapine-unity-framework-doc/csharp-coding-guidelines)。
