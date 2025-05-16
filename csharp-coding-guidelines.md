@@ -8,8 +8,6 @@
 
 - 所有使用Unity作为开发环境的软件产品都应遵照本规范的内容进行编码。
 
-- 所有使用Unity作为开发环境的软件产品都应遵照本规范的内容进行编码。
-
 - 本规范尽量以Unity已有C#代码为参考进行建立。
 
 - 如有本规范并无提及的情况，如为Unity项目，用户也应尽量先以Unity已有C#代码为参考，并酌情合并回本规范。
@@ -552,19 +550,14 @@ void Method()
 例子：
 ```csharp
 public enum MyEnum1 { One, Two }
-
 public enum MyEnum2 { A, B }
 
 // 为了节省代码段和内存，不要定义枚举相关的泛型容器。
-
 // private Dictionary<MyEnum1, object> m_myDict1; // <- 在代码段出现一遍整个MyEnum1容器的代码
-
 // private Dictionary<MyEnum2, object> m_myDict2; // <- 在代码段再出现一遍整个MyEnum2容器的代码
 
 // 请定义成这样更可能重用的泛型容器
-
 private Dictionary<int, object> m_myDict1;
-
 private Dictionary<int, object> m_myDict2;
 ```
 
