@@ -79,3 +79,18 @@ GameManager.DataNode.Root["player"]["name"].SetData("eapine");
 GameManager.DataNode.Root["player"]["lv"].SetInt32(100);
 // 为了简短代码做了封装省略了Root，实际上整个DataNode是一个数结构，有一个Root节点。
 ```
+
+### 树节点
+```csharp
+DataNode dataNode = GameManager.DataNode.Root["player"];
+// 等价于
+DataNode dataNode = GameManager.DataNode.Root.GetOrAddNode("player");
+// 如果Root下没有"player"，会在内部自动创建，不会返回空。
+
+// 如果不想自动创建，可以使用GetNode，如果节点不存在会返回空。
+DataNode dataNode = GameManager.DataNode.Root.GetNode("player");
+
+// 如果想删除节点，通过RemoveNode，会将它的子孙也一起删除。
+GameManager.DataNode.Root.RemoveNode("player");
+// 如果节点上的数据是Variable类型，会在内部放回引用池。
+```
