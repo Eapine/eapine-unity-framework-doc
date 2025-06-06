@@ -51,4 +51,7 @@ instance = ReferencePool.Acquire(typeof(MyClass));
 
 //通过 ReferencePool.Release() 释放实例
 ReferencePool.Release(instance);
+
+//释放池子内所有实例，一般在切场景时调用
+ReferencePool.ClearAll();
 ```

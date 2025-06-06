@@ -5,7 +5,7 @@
 Eapine Unity Framework 是一个基于 Unity 引擎的游戏框架，主要对游戏开发过程中常用模块进行了封装，很大程度地规范开发过程、加快开发速度并保证产品质量。
 基于 [https://github.com/EllanJiang/GameFramework](https://github.com/EllanJiang/GameFramework) 进行大量修改和扩展。阅读或扩展代码前，可查看此框架的[代码规范](https://eapine.github.io/eapine-unity-framework-doc/csharp-coding-guidelines)。
 
-在最新的 Eapine Unity Framework 版本中，包含以下 19 个内置模块，后续我们还将开发更多的扩展模块供开发者使用。
+在最新的 Eapine Unity Framework 版本中，包含以下 20 个内置模块，后续我们还将开发更多的扩展模块供开发者使用。
 
 1. [**全局配置 (Config)**](https://eapine.github.io/eapine-unity-framework-doc/config) - 存储一些全局的只读的游戏配置，如玩家初始速度、游戏初始音量等。
 
