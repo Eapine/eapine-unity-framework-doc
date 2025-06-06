@@ -29,7 +29,7 @@ Eapine Unity Framework 是一个基于 Unity 引擎的游戏框架，主要对�
 
 11. [**网络 (Network)**](https://eapine.github.io/eapine-unity-framework-doc/network) - 提供使用 Socket 长连接的功能，当前我们支持 TCP 协议，同时兼容 IPv4 和 IPv6 两个版本。用户可以同时建立多个连接与多个服务器同时进行通信，比如除了连接常规的游戏服务器，还可以连接语音聊天服务器。如果想接入 ProtoBuf 之类的协议库，只要派生自 Packet 类并实现自己的消息包类即可使用。
 
-12. [**引用对象池 (Reference Pool)**](https://eapine.github.io/eapine-unity-framework-doc/reference-pool) - 提供对象缓存池的功能，避免频繁地创建和销毁各种游戏对象，提高游戏性能。除了框架自身使用了对象池，用户还可以很方便地创建和管理自己的对象池。
+12. [**引用对象池 (Reference Pool)**](https://eapine.github.io/eapine-unity-framework-doc/reference-pool) - 提供引用类型对象缓存池的功能，仅限可通过new()直接实例化的类，避免频繁地创建和销毁各种引用类型的对象，提高游戏性能。除了框架自身使用了对象池，用户还可以很方便地创建和管理自己的引用对象池。
 
 13. [**显示对象池 (GameView Pool)**](https://eapine.github.io/eapine-unity-framework-doc/gameview-pool) - 提供对象缓存池的功能，避免频繁地创建和销毁各种游戏对象，提高游戏性能。除了框架自身使用了对象池，用户还可以很方便地创建和管理自己的对象池。
 
