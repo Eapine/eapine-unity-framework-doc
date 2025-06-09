@@ -31,7 +31,7 @@ Eapine Unity Framework 是一个基于 Unity 引擎的游戏框架，主要对�
 
 12. [**引用对象池 (Reference Pool)**](https://eapine.github.io/eapine-unity-framework-doc/reference-pool) - 提供引用类型对象缓存池的功能，仅限可通过new()直接实例化的类，避免频繁地创建和销毁各种引用类型的对象，提高游戏性能。除了框架自身使用了对象池，用户还可以很方便地创建和管理自己的引用对象池。
 
-13. [**显示对象池 (GameView Pool)**](https://eapine.github.io/eapine-unity-framework-doc/gameview-pool) - 提供对象缓存池的功能，避免频繁地创建和销毁各种游戏对象，提高游戏性能。除了框架自身使用了对象池，用户还可以很方便地创建和管理自己的对象池。
+13. [**对象池 (Object Pool)**](https://eapine.github.io/eapine-unity-framework-doc/object-pool) - 提供对象缓存池的功能，避免频繁地创建和销毁各种游戏对象，提高游戏性能。除了框架自身使用了对象池，用户还可以很方便地创建和管理自己的对象池。
 
 14. [**流程 (Procedure)**](https://eapine.github.io/eapine-unity-framework-doc/procedure) - 是贯穿游戏运行时整个生命周期的有限状态机。通过流程，将不同的游戏状态进行解耦将是一个非常好的习惯。对于网络游戏，你可能需要如检查资源流程、更新资源流程、检查服务器列表流程、选择服务器流程、登录服务器流程、创建角色流程等流程，而对于单机游戏，你可能需要在游戏选择菜单流程和游戏实际玩法流程之间做切换。如果想增加流程，只要派生自 ProcedureBase 类并实现自己的流程类即可使用。
 
