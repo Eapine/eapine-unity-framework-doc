@@ -19,6 +19,7 @@ string uiGroup; // UI 组
 
 // 1.直接打开
 GameManager.UI.OpenUIForm(path, uiGroup);
+
 // 2.打开时保存SerialId，ID会自增，保证唯一性
 int serialId = GameManager.UI.OpenUIForm(path, uiGroup);
 ```
