@@ -22,14 +22,15 @@ public interface IReference
 ## 最佳实践
 
 ```csharp
-//继承自 IReference 的类
+//继承自 IReference 的类。
 public class MyClass : IReference
 {
     public string name;
     public int value;
     public GameObject gameObject;
     public Vector3 position;
-            
+    
+    // 继承 IReference 后，需要实现 Clear()。
     public void Clear()
     {
         name = null;
@@ -37,21 +38,35 @@ public class MyClass : IReference
         gameObject = null;
         position = Vector3.zero;
     }
+
+    // 根据需要增加一个Create 函数，复用初始化赋值代码。
+    public static MyClass Create(string name, int value, GameObject gameObject, Vector3 position)
+    {
+        MyClass instance = ReferencePool.Acquire<MyClass>();
+        instance.name = name;
+        instance.value = value;
+        instance.gameObject = gameObject;
+        instance.position = position;
+        return instance;
+    }
 }
 
-//通过 ReferencePool.Acquire<T>() 获取实例
+//通过 ReferencePool.Acquire<T>() 获取实例。
 MyClass instance = ReferencePool.Acquire<MyClass>();
 instance.name = "eapine";
 instance.value = 100;
 instance.gameObject = gameObject;
 instance.position = Vector3.one;
 
-//通过 Acquire(Type type) 也能获取实例，但性能不如 Acquire<T>()
+//或利用封装好的Create 函数创建，缩短复用时代码量。
+MyClass instance = MyClass.Create("eapine", 100, gameObject, Vector3.one);
+
+//通过 Acquire(Type type) 也能获取实例，但性能不如 Acquire<T>()。
 instance = ReferencePool.Acquire(typeof(MyClass));
 
-//通过 ReferencePool.Release() 释放实例
+//通过 ReferencePool.Release() 释放实例。
 ReferencePool.Release(instance);
 
-//释放池子内所有实例，一般在切场景时调用
+//释放池子内所有实例，一般在切场景时调用。
 ReferencePool.ClearAll();
 ```
