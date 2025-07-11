@@ -321,15 +321,19 @@ internal struct Time
 3. 函数多个参数间用逗号隔开，每个逗号后应加一个空格。
 
 4. 除.之外，二元操作符都用空格与操作数隔开，一元操作符不需用空格隔开，  如：
+
 ```csharp
 a = a + 1;
 
 b = a++;
 ```
+
 5. 语句中表达式之间，如：
+
 ```csharp
 for (int i = 1; i < 10; i++)
 ```
+
 #### 2.1.4 【必须】文件格式
 
 描述：代码文件必须以UTF-8 without BOM格式进行存储，换行方式需遵循当前工作平台的定义，这些都可以通过正确设定版本管理软件的配置以提供更好的兼容性。
@@ -809,6 +813,7 @@ return ApiResultExtensions.EnsureSuccess(apiResult);
 描述：
 
 1. 基本的生命周期函数要严格确保大小写、拼写正确，如：
+
 ```csharp
 void Awake()
 {
@@ -830,6 +835,7 @@ void OnDestroy() //容易写为OnDestory
 
 }
 ```
+
 2. 未使用的生命周期函数不要声明，尤其是Update()、LateUpdate()等高频函数，只要声明了，即便是空函数，Unity也会执行。
 
 ### 4.2 【推荐】Update/FixedUpdate/LateUpdate函数
@@ -837,6 +843,7 @@ void OnDestroy() //容易写为OnDestory
 描述：禁止写空Update()函数，禁止在Update函数中进行一些明显有问题的操作。比如禁止使用new操作符、禁止无条件限制使用字符串拼接。
 
 例子：
+
 ```csharp
 void Update()
 {
@@ -867,6 +874,7 @@ void Update()
     MyComponent myComp = gameObject.GetComponent<MyComponent>(); //开销很大
 }
 ```
+
 ### 4.3 【必须】避免不合理的空引用保护
 
 描述：不合理的空引用保护会把错误隐藏掉，将错误渗透到更叶子节点的逻辑，使得开发者将难以发现错误根本原因。另，UnityEngine.Object的operator ==()被引擎重载，执行效率事实上比GetComponent()更差（可参见本文）。所以应避免不合理的空引用保护。如有不得不进行保护的情况，则必须加上错误日志。
