@@ -83,6 +83,11 @@ public class MyComponent : MonoBehaviour
     public static int PublicStaticVar;
 
     /// <summary>
+    /// private/protected const成员变量，c_开始、后接大驼峰式
+    /// </summary>
+    private const int c_PrivateConstVar;
+
+    /// <summary>
     /// 常量，大驼峰式
     /// </summary>
     public const int ConstantValue = 2;
@@ -92,7 +97,7 @@ public class MyComponent : MonoBehaviour
     /// </summary>
     public enum MyEnum
     {
-        /// 枚举值，大驼峰式
+        // 枚举值，大驼峰式
         Enum1,
         Enum2
     }
@@ -539,15 +544,15 @@ if (poolCount > 0 ||
 ```csharp
 void Awake()
 {
-    m_method = Method; // 一次GC Alloc
+    m_Method = Method; // 一次GC Alloc
 }
 
 void Update()
 {
-    m_dispatcher.AddListener(MyEvent.One, m_method); // 无GC Alloc
-    m_dispatcher.RemoveListener(MyEvent.One, m_method); // 无GC Alloc
-    // m_dispatcher.AddListener(MyEvent.One, Method); // 每次都GC Alloc
-    // m_dispatcher.RemoveListener(MyEvent.One, Method); // 每次都GC Alloc
+    m_Dispatcher.AddListener(MyEvent.One, m_Method); // 无GC Alloc
+    m_Dispatcher.RemoveListener(MyEvent.One, m_Method); // 无GC Alloc
+    // m_Dispatcher.AddListener(MyEvent.One, Method); // 每次都GC Alloc
+    // m_Dispatcher.RemoveListener(MyEvent.One, Method); // 每次都GC Alloc
 }
 
 void Method()
@@ -565,12 +570,12 @@ public enum MyEnum1 { One, Two }
 public enum MyEnum2 { A, B }
 
 // 为了节省代码段和内存，不要定义枚举相关的泛型容器。
-// private Dictionary<MyEnum1, object> m_myDict1; // <- 在代码段出现一遍整个MyEnum1容器的代码
-// private Dictionary<MyEnum2, object> m_myDict2; // <- 在代码段再出现一遍整个MyEnum2容器的代码
+// private Dictionary<MyEnum1, object> m_MyDict1; // <- 在代码段出现一遍整个MyEnum1容器的代码
+// private Dictionary<MyEnum2, object> m_MyDict2; // <- 在代码段再出现一遍整个MyEnum2容器的代码
 
 // 请定义成这样更可能重用的泛型容器
-private Dictionary<int, object> m_myDict1;
-private Dictionary<int, object> m_myDict2;
+private Dictionary<int, object> m_MyDict1;
+private Dictionary<int, object> m_MyDict2;
 ```
 
 ### 3.6 【推荐】注意struct应重写实现几个重要函数
@@ -713,9 +718,9 @@ struct Vector3I
 //若必须使用，应当使用对象池管理
 class Vector3I
 {
-    int m_posX;
-    int m_posY;
-    int m_posZ;
+    int m_PosX;
+    int m_PosY;
+    int m_PosZ;
 }
 ```
 ### 3.11 【推荐】避免Dictionary重复查询
@@ -724,25 +729,25 @@ class Vector3I
 
 例子：
 ```csharp
-Dictionary<int, Mesh> m_dic = new Dictionary<int, Mesh>();
+Dictionary<int, Mesh> m_Dic = new Dictionary<int, Mesh>();
 
 void Update()
 {
     Mesh mesh = null;
     //推荐，一次性出结果
-    if (m_dic.TryGetValue(i, out mesh))
+    if (m_Dic.TryGetValue(i, out mesh))
     {
         //do something
     }
     
     // C# 6及以上版本
-    if (m_dic.TryGetValue(i, out Mesh mesh))
+    if (m_Dic.TryGetValue(i, out Mesh mesh))
     {
         //do somthing
     }
     
     //不推荐，产生了两次查询
-    if (m_dic.ContainKey(i))
+    if (m_Dic.ContainKey(i))
     {
         Mesh mesh = dic[i];
     }
@@ -770,16 +775,16 @@ for (int i = 0; i < rootNode.ChildNodes.Count; i++)
 例子：
 ```csharp
 //不推荐
-private Dictionary<string, XmlNode> m_configXml = new Dictionary<string, XmlNode>(); (缓存XmlNode)
+private Dictionary<string, XmlNode> m_ConfigXml = new Dictionary<string, XmlNode>(); (缓存XmlNode)
 
 //推荐
 public struct UIConfigNode
 {
-    public string m_atlas;
-    public string m_path;
+    public string m_Atlas;
+    public string m_Path;
 }
 
-private Dictionary<string, UIConfigNode> m_configXml = new Dictionary<string, UIConfigNode>(); //(仅缓存XmlNode中需要的数据)
+private Dictionary<string, UIConfigNode> m_ConfigXml = new Dictionary<string, UIConfigNode>(); //(仅缓存XmlNode中需要的数据)
 ```
 ### 3.14 【推荐】扩展方法
 
@@ -789,7 +794,7 @@ private Dictionary<string, UIConfigNode> m_configXml = new Dictionary<string, UI
 ```csharp
 internal static class ApiResultExtensions
 {
-    private static readonly int s_successStatusCode = 20000;
+    private static readonly int s_SuccessStatusCode = 20000;
     public static T EnsureSuccess<T>(this ApiResult<T> apiResult)
     {
         if (apiResult == null)
@@ -797,7 +802,7 @@ internal static class ApiResultExtensions
             throw new ArgumentNullException(nameof(apiResult));
         }
         
-        if (apiResult.StatusCode != s_successStatusCode)
+        if (apiResult.StatusCode != s_SuccessStatusCode)
         {
             throw new StatusCodeException(apiResult.StatusCode, apiResult.Message);
         }
@@ -997,16 +1002,16 @@ public class MyComponent : MonoBehaviour
 
 例子：
 ```csharp
-private static GameObject s_goSceneObject = null;
+private static GameObject s_GoSceneObject = null;
 
 void Start()
 {
-    s_goSceneObject = Resources.Load("SceneObject", typeof(GameObject)) as  GameObject;
+    s_GoSceneObject = Resources.Load("SceneObject", typeof(GameObject)) as  GameObject;
 }
 
 void OnDestroy()
 {
-    //未手动解除引用，导致m_goSceneObject无法被释放
+    //未手动解除引用，导致s_GoSceneObject无法被释放
 }
 ```
 ### 4.13 【推荐】保持属性的实现足够轻量
