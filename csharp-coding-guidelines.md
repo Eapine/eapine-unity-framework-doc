@@ -361,6 +361,7 @@ void CreateActor()
 描述：需按照以下规范使用：
 
 1. 在类、接口、函数前应使用标准C# XML文档注释格式。VS中输入///可生成。也可补全作者、时间，如：
+
 ```csharp
 /// <summary>
 /// ClassA的用途解释
@@ -389,7 +390,9 @@ public class ClassA
 
 }
 ```
+
 2. 函数内注释使用单行注释，临时的、有争议的、待改进的代码处也需要注释：
+
 ```csharp
 public float GetTime()
 {
@@ -397,6 +400,7 @@ public float GetTime()
     public int serverNum = 0;
 }
 ```
+
 #### 2.1.7 【必须】全局命名空间
 
 描述：禁止在全局命名空间声明类型
@@ -493,6 +497,7 @@ var tmpObj = new {Name = "Tom", Age = 10}; // 要使用匿名类型，必须使�
 1. 使用string.Format时，应显式对值类型进行ToString()转换，避免装箱操作。
 
 2. 如果编译器支持C#6及以上语法，优先使用 字符串插值(\$ - string interpolation) 语法糖，\$字符串只是string.Format的语法糖，所以最好对值类型显示调用ToString()，避免装箱。
+
 ```csharp
 Debug.LogError(string.Format("Count: {0}", count)); //值类型，有装箱
 
@@ -502,9 +507,11 @@ Debug.LogError($"Count: {count}"); //值类型，有装箱
 
 Debug.LogError($"Count: {count.ToString()}"); //避免装箱，但是更简洁C#6
 ```
+
 ### 3.3 【推荐】bool条件判断
 
 描述：应将开销较小、更易满足的条件往前放，&&左边条件不满足则右边判断全部跳过，||左边条件满足则右边判断全跳过，条件较多时，应分行书写，如
+
 ```csharp
 if (enabled && null != ActorPool.GetActor(objID))
 {
@@ -523,6 +530,7 @@ if (poolCount > 0 ||
     //条件较多时，分行书写，便于理解
 }
 ```
+
 ### 3.4 【推荐】需cache好delegate的变量
 
 描述：函数转为Delegate时，每个MyDelegate myDelegate = MyMethod;  实际上都等于MyDelegate myDelegate = new MyDelegate(MyMethod);，  所以对于函数转为Delegate，如频率较高，都应cache好方法对应的Delegate。
